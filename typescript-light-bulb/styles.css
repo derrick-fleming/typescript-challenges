@@ -1,0 +1,34 @@
+.container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-on {
+  background-color: rgb(254 249 241);
+  transition: background-color 0.1s ease-in;
+}
+
+.background-off {
+  background-color: rgb(17 17 17);
+  transition: background-color 0.1s ease-in;
+}
+
+.bulb {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 100%;
+}
+
+.bulb-on {
+  background-color: rgb(249 234 132);
+  box-shadow: 0 0 1rem rgb(249 234 132);
+  transition: background-color 0.2s ease-in;
+  transition: box-shadow 0.1s ease-in;
+}
+
+.bulb-off {
+  background-color: rgb(37 37 37);
+  transition: background-color 0.1s ease-in;
+}
