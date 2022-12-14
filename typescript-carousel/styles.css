@@ -1,0 +1,86 @@
+body {
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: #f0f0f2;
+}
+
+img {
+  width: 35%;
+  margin-top: -60%;
+  margin-left: -10%;
+}
+
+i {
+  padding: 0.2rem;
+  color: 111111;
+}
+
+.button-row {
+  font-size: 1.2rem;
+}
+
+.container {
+  width: 1000px;
+  margin: 2rem auto 0;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column-quarter {
+  flex-basis: 25%;
+}
+
+.column-half {
+  flex-basis: 50%;
+}
+
+.column-three-quarter {
+  flex-basis: 75%;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.right-arrow,
+.left-arrow {
+  padding: 4rem;
+  background-color: #f0f0f2;
+  border: 0;
+  font-size: 4rem;
+  color: rgb(22 22 22);
+}
+
+i:hover {
+  transform: scale(1.3);
+  cursor: pointer;
+  color: #c32a2a;
+}
+
+.right-arrow:hover,
+.left-arrow:hover {
+  color: #c32a2a;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 700px;
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4d590121-e064-459f-99bd-27cf25d62415/dafne57-ed103009-a482-4125-ae9b-ead71084f705.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzRkNTkwMTIxLWUwNjQtNDU5Zi05OWJkLTI3Y2YyNWQ2MjQxNVwvZGFmbmU1Ny1lZDEwMzAwOS1hNDgyLTQxMjUtYWU5Yi1lYWQ3MTA4NGY3MDUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.8WlSqjnogNBfpi3B9rVuF7aBKRHvy13MWPdCnsrpOZE");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
