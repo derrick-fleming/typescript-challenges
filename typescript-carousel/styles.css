@@ -4,9 +4,14 @@ body {
   background-color: #f0f0f2;
 }
 
+button {
+  border: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
 img {
   width: 35%;
-  margin-top: -60%;
+  margin-top: -25%;
   margin-left: -10%;
 }
 
@@ -60,6 +65,11 @@ i {
 }
 
 i:hover {
+  cursor: pointer;
+  color: #c32a2a;
+}
+
+button:hover {
   transform: scale(1.3);
   cursor: pointer;
   color: #c32a2a;

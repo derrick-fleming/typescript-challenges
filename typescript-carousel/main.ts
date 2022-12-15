@@ -1,5 +1,7 @@
-const $pokedex = document.querySelector('.column-half.switch');
-const $buttonRow = document.querySelector('.row.button-row');
+const $pokedex = document.querySelector('.column-half.switch') as HTMLDivElement;
+const $buttonRow = document.querySelector('.column-quarter.center') as HTMLDivElement;
+// const $rightArrow = document.querySelector('.right-arrow') as HTMLButtonElement;
+// const $leftArrow = document.querySelector('.left-arrow') as HTMLButtonElement;
 
 const pokemonArray: {src: string, alt: string}[] = [
   {src: 'images/001.png',
@@ -14,13 +16,13 @@ const pokemonArray: {src: string, alt: string}[] = [
    alt: 'Jigglypuff'}
 ]
 
-const buttons: number[] = [, , , ,];
+const buttons: number[] = [0, 1, 2, 3, 4];
 
 pokemonArray.forEach((pokemon, index) => {
   const $image = document.createElement('img');
   $image.setAttribute('src', pokemon.src)
   $image.setAttribute('alt', pokemon.alt)
-  $image.setAttribute('data-image', index.toString())
+  $image.setAttribute('data-id', index.toString())
   if (index === 0) {
     $image.className = ''
   } else {
@@ -29,9 +31,37 @@ pokemonArray.forEach((pokemon, index) => {
   $pokedex.appendChild($image);
 })
 
-buttons.forEach((button, index) => {
+buttons.forEach(button => {
   const $circle = document.createElement('button');
-  $circle.className = 'fa-solid fa-circle';
-  $circle.setAttribute('data-id', index.toString());
+  $circle.className = button === 0
+    ? 'fa-solid fa-circle'
+    : 'fa-regular fa-circle'
+  $circle.setAttribute('data-id', button.toString());
   $buttonRow.appendChild($circle);
 })
+
+const $imageArray: NodeListOf<HTMLImageElement> = document.querySelectorAll('img');
+const $buttonArray: NodeListOf<HTMLButtonElement> = $buttonRow.querySelectorAll('button')
+
+$buttonRow.addEventListener('click', handleButtonRowClick)
+
+function handleButtonRowClick(e: MouseEvent) {
+  const target = e.target as HTMLButtonElement;
+  if (target.tagName !== 'BUTTON') {
+    return;
+  }
+
+  const $closest = target.closest('button');
+
+  $buttonArray.forEach(button => {
+    button.className = $closest.dataset.id === button.dataset.id
+      ? 'fa-solid fa-circle'
+      : 'fa-regular fa-circle'
+    })
+
+  $imageArray.forEach(image => {
+    image.className = $closest.dataset.id === image.dataset.id
+      ? ''
+      : 'hidden'
+  })
+}
