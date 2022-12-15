@@ -3,6 +3,13 @@ const $buttonRow = document.querySelector('.column-quarter.center') as HTMLDivEl
 const $rightArrow = document.querySelector('.right-arrow') as HTMLButtonElement;
 const $leftArrow = document.querySelector('.left-arrow') as HTMLButtonElement;
 
+$buttonRow.addEventListener('click', handleButtonRowClick);
+$rightArrow.addEventListener('click', handleNextImage);
+$leftArrow.addEventListener('click', handlePreviousImage);
+
+let index = 0;
+let timer = setTimeout(handleNextImage, 3000);
+
 const pokemonArray: {src: string, alt: string}[] = [
   {src: 'images/001.png',
    alt: 'Bulbasaur'},
@@ -43,13 +50,8 @@ buttons.forEach(button => {
 const $imageArray: NodeListOf<HTMLImageElement> = document.querySelectorAll('img');
 const $buttonArray: NodeListOf<HTMLButtonElement> = $buttonRow.querySelectorAll('button')
 
-$buttonRow.addEventListener('click', handleButtonRowClick);
-$rightArrow.addEventListener('click', handleNextImage);
-$leftArrow.addEventListener('click', handleNextImage);
-
-let index = 0;
-
 function handleButtonRowClick(e: MouseEvent) {
+  clearTimeout(timer);
   const target = e.target as HTMLButtonElement;
   if (target.tagName !== 'BUTTON') {
     return;
@@ -70,19 +72,43 @@ function handleButtonRowClick(e: MouseEvent) {
   })
 
   index = Number($closest.dataset.id)
+  timer = setTimeout(handleNextImage, 3000);
+
 };
 
-function handleNextImage(e: MouseEvent) {
-  const target = e.target as HTMLButtonElement;
-  const $arrow = target.closest('button');
-  if ($arrow.className === 'right-arrow') {
-    index = ((index + 1) % $imageArray.length);
-  } else {
-    index = (((index - 1) + $imageArray.length) % $imageArray.length)
-  }
+function handleNextImage() {
+  clearTimeout(timer);
+
+  index = ((index + 1) % $imageArray.length);
+
   $imageArray.forEach(image => {
     image.className = index.toString() === image.dataset.id
       ? ''
       : 'hidden'
   })
+
+  $buttonArray.forEach(button => {
+    button.className = index.toString() === button.dataset.id
+      ? 'fa-solid fa-circle'
+      : 'fa-regular fa-circle'
+  })
+
+  timer = setTimeout(handleNextImage, 3000);
+}
+
+function handlePreviousImage() {
+  clearTimeout(timer)
+  index = (((index - 1) + $imageArray.length) % $imageArray.length)
+  $imageArray.forEach(image => {
+    image.className = index.toString() === image.dataset.id
+      ? ''
+      : 'hidden'
+  })
+
+  $buttonArray.forEach(button => {
+    button.className = index.toString() === button.dataset.id
+      ? 'fa-solid fa-circle'
+      : 'fa-regular fa-circle'
+  })
+  timer = setTimeout(handleNextImage, 3000);
 }

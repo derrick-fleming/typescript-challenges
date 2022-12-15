@@ -2,6 +2,11 @@ var $pokedex = document.querySelector('.column-half.switch');
 var $buttonRow = document.querySelector('.column-quarter.center');
 var $rightArrow = document.querySelector('.right-arrow');
 var $leftArrow = document.querySelector('.left-arrow');
+$buttonRow.addEventListener('click', handleButtonRowClick);
+$rightArrow.addEventListener('click', handleNextImage);
+$leftArrow.addEventListener('click', handlePreviousImage);
+var index = 0;
+var timer = setTimeout(handleNextImage, 3000);
 var pokemonArray = [
   {
     src: 'images/001.png',
@@ -47,11 +52,8 @@ buttons.forEach(function (button) {
 });
 var $imageArray = document.querySelectorAll('img');
 var $buttonArray = $buttonRow.querySelectorAll('button');
-$buttonRow.addEventListener('click', handleButtonRowClick);
-$rightArrow.addEventListener('click', handleNextImage);
-$leftArrow.addEventListener('click', handleNextImage);
-var index = 0;
 function handleButtonRowClick(e) {
+  clearTimeout(timer);
   var target = e.target;
   if (target.tagName !== 'BUTTON') {
     return;
@@ -68,19 +70,36 @@ function handleButtonRowClick(e) {
       : 'hidden';
   });
   index = Number($closest.dataset.id);
+  timer = setTimeout(handleNextImage, 3000);
 }
 
-function handleNextImage(e) {
-  var target = e.target;
-  var $arrow = target.closest('button');
-  if ($arrow.className === 'right-arrow') {
-    index = ((index + 1) % $imageArray.length);
-  } else {
-    index = (((index - 1) + $imageArray.length) % $imageArray.length);
-  }
+function handleNextImage() {
+  clearTimeout(timer);
+  index = ((index + 1) % $imageArray.length);
   $imageArray.forEach(function (image) {
     image.className = index.toString() === image.dataset.id
       ? ''
       : 'hidden';
   });
+  $buttonArray.forEach(function (button) {
+    button.className = index.toString() === button.dataset.id
+      ? 'fa-solid fa-circle'
+      : 'fa-regular fa-circle';
+  });
+  timer = setTimeout(handleNextImage, 3000);
+}
+function handlePreviousImage() {
+  clearTimeout(timer);
+  index = (((index - 1) + $imageArray.length) % $imageArray.length);
+  $imageArray.forEach(function (image) {
+    image.className = index.toString() === image.dataset.id
+      ? ''
+      : 'hidden';
+  });
+  $buttonArray.forEach(function (button) {
+    button.className = index.toString() === button.dataset.id
+      ? 'fa-solid fa-circle'
+      : 'fa-regular fa-circle';
+  });
+  timer = setTimeout(handleNextImage, 3000);
 }
