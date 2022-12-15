@@ -1,7 +1,7 @@
 const $pokedex = document.querySelector('.column-half.switch') as HTMLDivElement;
 const $buttonRow = document.querySelector('.column-quarter.center') as HTMLDivElement;
-// const $rightArrow = document.querySelector('.right-arrow') as HTMLButtonElement;
-// const $leftArrow = document.querySelector('.left-arrow') as HTMLButtonElement;
+const $rightArrow = document.querySelector('.right-arrow') as HTMLButtonElement;
+const $leftArrow = document.querySelector('.left-arrow') as HTMLButtonElement;
 
 const pokemonArray: {src: string, alt: string}[] = [
   {src: 'images/001.png',
@@ -43,7 +43,11 @@ buttons.forEach(button => {
 const $imageArray: NodeListOf<HTMLImageElement> = document.querySelectorAll('img');
 const $buttonArray: NodeListOf<HTMLButtonElement> = $buttonRow.querySelectorAll('button')
 
-$buttonRow.addEventListener('click', handleButtonRowClick)
+$buttonRow.addEventListener('click', handleButtonRowClick);
+$rightArrow.addEventListener('click', handleNextImage);
+$leftArrow.addEventListener('click', handleNextImage);
+
+let index = 0;
 
 function handleButtonRowClick(e: MouseEvent) {
   const target = e.target as HTMLButtonElement;
@@ -61,6 +65,23 @@ function handleButtonRowClick(e: MouseEvent) {
 
   $imageArray.forEach(image => {
     image.className = $closest.dataset.id === image.dataset.id
+      ? ''
+      : 'hidden'
+  })
+
+  index = Number($closest.dataset.id)
+};
+
+function handleNextImage(e: MouseEvent) {
+  const target = e.target as HTMLButtonElement;
+  const $arrow = target.closest('button');
+  if ($arrow.className === 'right-arrow') {
+    index = ((index + 1) % $imageArray.length);
+  } else {
+    index = (((index - 1) + $imageArray.length) % $imageArray.length)
+  }
+  $imageArray.forEach(image => {
+    image.className = index.toString() === image.dataset.id
       ? ''
       : 'hidden'
   })

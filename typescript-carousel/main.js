@@ -1,7 +1,7 @@
 var $pokedex = document.querySelector('.column-half.switch');
 var $buttonRow = document.querySelector('.column-quarter.center');
-// const $rightArrow = document.querySelector('.right-arrow') as HTMLButtonElement;
-// const $leftArrow = document.querySelector('.left-arrow') as HTMLButtonElement;
+var $rightArrow = document.querySelector('.right-arrow');
+var $leftArrow = document.querySelector('.left-arrow');
 var pokemonArray = [
   {
     src: 'images/001.png',
@@ -48,6 +48,9 @@ buttons.forEach(function (button) {
 var $imageArray = document.querySelectorAll('img');
 var $buttonArray = $buttonRow.querySelectorAll('button');
 $buttonRow.addEventListener('click', handleButtonRowClick);
+$rightArrow.addEventListener('click', handleNextImage);
+$leftArrow.addEventListener('click', handleNextImage);
+var index = 0;
 function handleButtonRowClick(e) {
   var target = e.target;
   if (target.tagName !== 'BUTTON') {
@@ -61,6 +64,22 @@ function handleButtonRowClick(e) {
   });
   $imageArray.forEach(function (image) {
     image.className = $closest.dataset.id === image.dataset.id
+      ? ''
+      : 'hidden';
+  });
+  index = Number($closest.dataset.id);
+}
+
+function handleNextImage(e) {
+  var target = e.target;
+  var $arrow = target.closest('button');
+  if ($arrow.className === 'right-arrow') {
+    index = ((index + 1) % $imageArray.length);
+  } else {
+    index = (((index - 1) + $imageArray.length) % $imageArray.length);
+  }
+  $imageArray.forEach(function (image) {
+    image.className = index.toString() === image.dataset.id
       ? ''
       : 'hidden';
   });
