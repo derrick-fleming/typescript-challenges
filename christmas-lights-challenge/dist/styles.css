@@ -1,0 +1,42 @@
+body {
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: rgb(12 15 54);
+}
+
+.container {
+  margin-top: 5rem;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.column-one-fifth {
+  flex-basis: calc(100%/5);
+}
+
+.red {
+  fill: #f24363;
+  filter: drop-shadow(2px 2px 10px #ff1843);
+}
+
+.green {
+  fill: #7dce82;
+  filter: drop-shadow(2px 2px 10px #91e696);
+}
+
+.orange {
+  fill: #f29f05;
+  filter: drop-shadow(2px 2px 10px #feab12);
+}
+
+.yellow {
+  fill: #f2efbd;
+  filter: drop-shadow(2px 2px 10px #fffee6);
+}
+
+.padding-x3 {
+  padding: 1rem;
+}
