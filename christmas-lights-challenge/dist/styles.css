@@ -10,7 +10,10 @@ body {
 
 .row {
   display: flex;
-  justify-content: center;
+}
+
+.space-between {
+  justify-content: space-evenly;
 }
 
 .column-one-seventh {
@@ -51,6 +54,27 @@ body {
 
 .padding-x3 {
   padding: 1rem;
+}
+
+.button {
+  padding: 2rem;
+  font-size: 2rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  text-decoration: none;
+  color: #395139;
+  border-radius: 8px;
+}
+
+.button:hover {
+  color: #5f875e;
+}
+
+.align-right {
+  text-align: end;
+}
+
+.margin-right {
+  margin-right: 3rem;
 }
 
 @keyframes red-color-1 {

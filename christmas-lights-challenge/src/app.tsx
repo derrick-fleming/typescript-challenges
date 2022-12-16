@@ -1,58 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import AutomaticChristmasDisplay from './automatic-christmas-display';
+import parseRoute from './lib/parse-route';
 
 export default function App() {
+  const [route, setRoute] = useState(parseRoute(window.location.hash))
+
+  useEffect(()=>{
+    window.addEventListener('hashchange', ()=> {
+      setRoute(parseRoute(window.location.hash))
+    })
+  })
+
+  if (window.location.hash === '#auto-display') {
+    return <AutomaticChristmasDisplay />;
+  }
+
   return (
-  <div className='container'>
-    <div className='row'>
-      <div className='column-one-seventh padding-x3'>
-        <div className='row'>
-            <svg className='red' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="50" />
-          </svg>
-        </div>
-      </div>
-        <div className='column-one-seventh padding-x3'>
-          <div className='row'>
-            <svg className='yellow' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="50" />
-            </svg>
+    <>
+      <div className='container'>
+        <div className='row space-between'>
+          <div className='column-one-half'>
+            <a className='button' href='#auto-display'>
+              Create Display
+            </a>
           </div>
-      </div>
-        <div className='column-one-seventh padding-x3'>
-          <div className='row'>
-            <svg className='orange' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="50" />
-            </svg>
+          <div className='column-one-half'>
+            <a className='button' href='#auto-display'>
+              Auto Display
+            </a>
           </div>
-      </div>
-        <div className='column-one-seventh padding-x3'>
-        <div className='row'>
-          <svg className='green' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="50" />
-          </svg>
         </div>
       </div>
-      <div className='column-one-seventh padding-x3'>
-        <div className='row'>
-          <svg className='red-two' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="50" />
-          </svg>
-        </div>
-      </div>
-      <div className='column-one-seventh padding-x3'>
-        <div className='row'>
-          <svg className='orange' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="50" />
-          </svg>
-        </div>
-      </div>
-      <div className='column-one-seventh padding-x3'>
-        <div className='row'>
-          <svg className='green' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="50" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>)
+    </>
+  );
 }
