@@ -13,30 +13,77 @@ body {
   justify-content: center;
 }
 
-.column-one-fifth {
-  flex-basis: calc(100%/5);
+.column-one-seventh {
+  flex-basis: calc(100%/7);
+}
+
+.red,
+.red-two {
+  fill: #f24363;
+  filter: drop-shadow(2px 2px 10px #ff1843);
 }
 
 .red {
-  fill: #f24363;
-  filter: drop-shadow(2px 2px 10px #ff1843);
+  animation: red-color-1 1.7s ease infinite;
+}
+
+.red-two {
+  animation: red-color-2 1s ease infinite;
 }
 
 .green {
   fill: #7dce82;
   filter: drop-shadow(2px 2px 10px #91e696);
+  animation: green-color 1.5s ease-in-out infinite;
 }
 
 .orange {
   fill: #f29f05;
   filter: drop-shadow(2px 2px 10px #feab12);
+  animation: orange-color 1.25s ease-in-out infinite;
 }
 
 .yellow {
   fill: #f2efbd;
   filter: drop-shadow(2px 2px 10px #fffee6);
+  animation: yellow-color 2s ease-in-out infinite;
 }
 
 .padding-x3 {
   padding: 1rem;
+}
+
+@keyframes red-color-1 {
+  50% {
+    fill: #2f0d13;
+    filter: drop-shadow(2px 2px 10px #2d030b);
+  }
+}
+
+@keyframes red-color-2 {
+  50% {
+    fill: #2f0d13;
+    filter: drop-shadow(2px 2px 10px #2d030b);
+  }
+}
+
+@keyframes green-color {
+  50% {
+    fill: #243c26;
+    filter: drop-shadow(2px 2px 10px #29422a);
+  }
+}
+
+@keyframes orange-color {
+  50% {
+    fill: rgb(70 46 2);
+    filter: drop-shadow(2px 2px 10px #543907);
+  }
+}
+
+@keyframes yellow-color {
+  50% {
+    fill: #343328;
+    filter: drop-shadow(2px 2px 10px #595845);
+  }
 }
