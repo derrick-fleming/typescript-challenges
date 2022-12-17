@@ -26,29 +26,38 @@ body {
   filter: drop-shadow(2px 2px 10px #ff1843);
 }
 
-.red {
+.red-animation {
   animation: red-color-1 1.7s ease infinite;
 }
 
-.red-two {
+.red-two-animation {
   animation: red-color-2 1s ease infinite;
 }
 
 .green {
   fill: #7dce82;
   filter: drop-shadow(2px 2px 10px #91e696);
+}
+
+.green-animation {
   animation: green-color 1.5s ease-in-out infinite;
 }
 
 .orange {
   fill: #f29f05;
   filter: drop-shadow(2px 2px 10px #feab12);
+}
+
+.orange-animation {
   animation: orange-color 1.25s ease-in-out infinite;
 }
 
 .yellow {
   fill: #f2efbd;
   filter: drop-shadow(2px 2px 10px #fffee6);
+}
+
+.yellow-animation {
   animation: yellow-color 2s ease-in-out infinite;
 }
 
