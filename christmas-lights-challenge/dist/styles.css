@@ -1,0 +1,138 @@
+body {
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: #0c0f36;
+}
+
+h1 {
+  text-align: center;
+  color: #395139;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+circle:hover {
+  cursor: pointer;
+}
+
+.container {
+  margin-top: 5rem;
+}
+
+.row {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-evenly;
+}
+
+.column-one-seventh {
+  flex-basis: calc(100%/7);
+}
+
+.red,
+.red-two {
+  fill: #f24363;
+  filter: drop-shadow(2px 2px 20px #ff3e61);
+}
+
+.red-animation {
+  animation: red-color-1 1.7s ease infinite;
+}
+
+.red-two-animation {
+  animation: red-color-2 1s ease infinite;
+}
+
+.green {
+  fill: #7dce82;
+  filter: drop-shadow(2px 2px 20px #91e696);
+}
+
+.green-animation {
+  animation: green-color 1.5s ease-in-out infinite;
+}
+
+.orange {
+  fill: #f29f05;
+  filter: drop-shadow(2px 2px 20px #feab12);
+}
+
+.orange-animation {
+  animation: orange-color 1.25s ease-in-out infinite;
+}
+
+.yellow {
+  fill: #f2efbd;
+  filter: drop-shadow(2px 2px 20px #fffee6);
+}
+
+.yellow-animation {
+  animation: yellow-color 2s ease-in-out infinite;
+}
+
+.off {
+  fill: #121651;
+}
+
+.padding-x3 {
+  padding: 1rem;
+}
+
+.button {
+  padding: 2rem;
+  font-size: 2rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  text-decoration: none;
+  color: #395139;
+  background-color: #0c0f36;
+  border: none;
+}
+
+.button:hover {
+  color: #5f875e;
+  cursor: pointer;
+}
+
+.align-right {
+  text-align: end;
+}
+
+.margin-right {
+  margin-right: 3rem;
+}
+
+@keyframes red-color-1 {
+  50% {
+    fill: #2f0d13;
+    filter: drop-shadow(2px 2px 10px #2d030b);
+  }
+}
+
+@keyframes red-color-2 {
+  50% {
+    fill: #2f0d13;
+    filter: drop-shadow(2px 2px 10px #2d030b);
+  }
+}
+
+@keyframes green-color {
+  50% {
+    fill: #243c26;
+    filter: drop-shadow(2px 2px 10px #29422a);
+  }
+}
+
+@keyframes orange-color {
+  50% {
+    fill: rgb(70 46 2);
+    filter: drop-shadow(2px 2px 10px #543907);
+  }
+}
+
+@keyframes yellow-color {
+  50% {
+    fill: #343328;
+    filter: drop-shadow(2px 2px 10px #595845);
+  }
+}
