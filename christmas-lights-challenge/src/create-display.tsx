@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 
-const colors = ['yellow', 'red', 'green', 'orange'];
-const seven = [0, 1, 2, 3, 4, 5, 6, 7]
+const colors = ['yellow', 'red', 'green', 'orange', 'off'];
+const seven = [0, 1, 2, 3, 4, 5, 6]
 
 export default function CreateDisplay() {
   const [random, setRandom] = useState(0);
@@ -23,13 +23,19 @@ export default function CreateDisplay() {
 
   return (
     <div className='container'>
-      <div className='row'>
+      <h1>
+        Click on the lights to change their colors
+      </h1>
+      <div className='row container'>
         {lights}
       </div>
       <div className="row container space-between">
         <button onClick={handleStart} className="button">
           {text}
         </button>
+        <a href='' className='button'>
+          Return Home
+        </a>
       </div>
     </div>
   )
@@ -37,6 +43,7 @@ export default function CreateDisplay() {
 
 function Lights(props: {key: number, random: number, timerOn: boolean}) {
   const [color, setColor] = useState('yellow');
+  const [randomNumber, setRandomNumber] = useState(Math.ceil(Math.random() * 5))
 
   function handleClick() {
     colors.find((bulb, index) => {
@@ -46,7 +53,7 @@ function Lights(props: {key: number, random: number, timerOn: boolean}) {
       }
     })
   }
-  let animation = props.timerOn ? {animation: `${color}-color ${props.random}s ease-in-out infinite`} : {}
+  let animation = props.timerOn ? {animation: `${color}-color ${randomNumber}s ease-in-out infinite`} : {}
   if (color === 'red' && props.timerOn) {
     animation = { animation: `${color}-color-1 ${props.random}s ease-in-out infinite` }
   }
