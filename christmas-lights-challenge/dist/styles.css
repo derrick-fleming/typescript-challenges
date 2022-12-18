@@ -30,6 +30,10 @@ circle:hover {
   flex-basis: calc(100%/7);
 }
 
+.column-one-half {
+  flex-basis: 50%;
+}
+
 .red,
 .red-two {
   fill: #f24363;
@@ -100,6 +104,14 @@ circle:hover {
 
 .margin-right {
   margin-right: 3rem;
+}
+
+.christmas-tree {
+  fill: #4b704f;
+}
+
+.trunk {
+  fill: #715840;
 }
 
 @keyframes red-color-1 {
