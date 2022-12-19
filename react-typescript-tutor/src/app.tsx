@@ -1,25 +1,46 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import useKeyPress from "./keypress-hook";
 
 const App = () => {
-  const [text, setText] = useState('grumpy wizards make toxic brew');
-  const phraseArray = text.split('');
+  const [text, setText] = useState(null);
+  const [index, setIndex] = useState(0);
+  const phrase = 'grumpy wizards make toxic brew'
+  const phraseArray = phrase.split('');
 
-  phraseArray.forEach((letter) => {
-    if (letter === '') {
-      return <span className="white-space"> </span>
+  useEffect(() => {
+    if (text === phrase[index]) {
+      setIndex(index + 1)
+      setText(null);
     }
-    <span>{letter}</span>
+  })
+
+  const phraseMapped = phraseArray.map((letter, i) => {
+    let textClass = '';
+    if (index === i) {
+      textClass = 'border';
+    }
+    if ((index === i && text === letter) || (index > i)) {
+      textClass = 'text-correct';
+    }
+    if (index === i && text !== letter && text !== null) {
+      textClass = 'text-wrong';
+    }
+    if (letter === ' ') {
+      textClass = `${textClass} white-space`;
+    }
+    return <span className={textClass} key={i}>{letter}</span>;
   })
 
   useKeyPress(key => {
-    console.log(key)
+    setText(key);
   });
+
+  console.log(phraseMapped);
 
   return(
     <div className="container">
       <h1 className="text">
-        {phraseArray}
+        {phraseMapped}
       </h1>
     </div>
   )
