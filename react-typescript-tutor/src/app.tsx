@@ -1,13 +1,19 @@
 import React, {useState, useEffect} from "react";
 import useKeyPress from "./keypress-hook";
 import TypingTest from "./typing-test";
+import parseRoute from "../lib/parse-route";
 
 const App = () => {
   const [test, setTest] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [randomQuote, setRandomQuote] = useState(null);
+  const [route, setRoute] = useState(parseRoute(window.location.hash))
 
-  /*useEffect(()=> {
+  useEffect(()=> {
+     window.addEventListener('hashchange', ()=> {
+      setRoute(parseRoute(window.location.hash))
+    })
+    /*
     if (isLoading) {
       fetch('https://zenquotes.io/api/quotes')
       .then(response => response.json())
@@ -18,8 +24,9 @@ const App = () => {
 
       setIsLoading(false)
     }
+    */
   })
-  */
+
 
 
   function handleEasyClick(){

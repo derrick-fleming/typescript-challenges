@@ -56,6 +56,9 @@ const TypingTest = (props: {quote: string}) => {
           Your accuracy is: {finalScore}%
         </h2>
       </div>
+      <a href="">
+        Return Home
+      </a>
     </div>
   )
 }
