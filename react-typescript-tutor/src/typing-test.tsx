@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import useKeyPress from "./keypress-hook";
 
-const TypingTest = () => {
+const TypingTest = (props: {quote: string}) => {
   const [text, setText]: [string | null, React.Dispatch<React.SetStateAction<string>>] = useState(null);
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const phrase = 'grumpy wizards make toxic brew'
+  const phrase = props.quote;
   const phraseArray = phrase.split('');
 
   useEffect(() => {
