@@ -1,52 +1,33 @@
 import React, {useState, useEffect} from "react";
 import useKeyPress from "./keypress-hook";
+import TypingTest from "./typing-test";
 
 const App = () => {
-  const [text, setText]: [string|null, React.Dispatch<React.SetStateAction<string>>] = useState(null);
-  const [index, setIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const phrase = 'grumpy wizards make toxic brew'
-  const phraseArray = phrase.split('');
-
-  useEffect(() => {
-    if (text === phrase[index]) {
-      setIndex(index + 1)
-      setText(null)
-    }
-  }, [text, index])
+  const [test, setTest] = useState('');
 
 
-  const phraseMapped = phraseArray.map((letter, i) => {
-    let textClass = '';
-    if (index === i) {
-      textClass = 'border';
-    }
-    if ((index === i && text === letter) || (index > i)) {
-      textClass = 'text-correct';
-    }
-    if (index === i && text !== letter && text !== null) {
-      textClass = 'text-wrong';
-    }
-    if (letter === ' ') {
-      textClass = `${textClass} white-space`;
-    }
-    return <span className={textClass} key={i}>{letter}</span>;
-  })
+  function handleEasyClick(){
+    setTest('easy test')
+  }
 
-  const scoreClass = index === phrase.length ? 'score' : 'hidden'
-
-  useKeyPress(key => {
-    setText(key);
-  });
+  if (test === 'easy test') {
+    return <TypingTest />
+  }
 
   return(
     <div className="container">
       <h1 className="text">
-        {phraseMapped}
+        Typing Tutor
       </h1>
-      <h2 className={scoreClass}>
-        {score}
-      </h2>
+      <h4>
+        Select a difficulty level
+      </h4>
+      <button onClick={handleEasyClick}>
+        Easy
+      </button>
+      <button>
+        Hard
+      </button>
     </div>
   )
 }
