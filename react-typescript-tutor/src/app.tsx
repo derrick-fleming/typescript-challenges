@@ -5,7 +5,6 @@ import parseRoute from "../lib/parse-route";
 
 const App = () => {
   const [test, setTest] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
   const [randomQuote, setRandomQuote] = useState(null);
   const [route, setRoute] = useState(parseRoute(window.location.hash))
 
@@ -13,18 +12,6 @@ const App = () => {
      window.addEventListener('hashchange', ()=> {
       setRoute(parseRoute(window.location.hash))
     })
-    /*
-    if (isLoading) {
-      fetch('https://zenquotes.io/api/quotes')
-      .then(response => response.json())
-      .then(result => {
-        setRandomQuote(result)
-      })
-      .catch(err => console.error(err));
-
-      setIsLoading(false)
-    }
-    */
   })
 
 
@@ -38,7 +25,7 @@ const App = () => {
   }
 
   if (test === 'easy test') {
-    return <TypingTest quote='grumpy wizards make toxic brew'/>
+    return <TypingTest quote='thrones'/>
   }
 
   if (test === 'difficult test') {
@@ -54,10 +41,10 @@ const App = () => {
         Select a difficulty level
       </h4>
       <button onClick={handleEasyClick}>
-        Easy
+        Game of Thrones Quotes
       </button>
       <button onClick={handleDifficultClick}>
-        Hard
+        Ron Swanson Quotes
       </button>
     </div>
   )
