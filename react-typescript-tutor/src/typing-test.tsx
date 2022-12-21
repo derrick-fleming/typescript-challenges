@@ -30,7 +30,6 @@ const TypingTest = (props: {quote: string}) => {
       setIsLoading(false)
     }
 
-
     if (text === phrase[index]) {
       setIndex(index + 1)
       setText(null)
@@ -39,6 +38,12 @@ const TypingTest = (props: {quote: string}) => {
       setScore(score - 1)
     }
   }, [text, index])
+
+    function handleClick() {
+      setIsLoading(true);
+      setIndex(0);
+      setScore(0);
+    }
 
      const phraseMapped = phrase.split('').map((letter, i) => {
       let textClass = '';
@@ -78,6 +83,9 @@ const TypingTest = (props: {quote: string}) => {
         <h2>
           Your accuracy is: {finalScore}%
         </h2>
+        <button onClick={handleClick}>
+          Play Again?
+        </button>
       </div>
       <a href="">
         Return Home
