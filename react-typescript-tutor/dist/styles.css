@@ -1,6 +1,11 @@
 #root {
   margin: 2rem;
-  text-align: center;
+  font-family: monospace;
+}
+
+img {
+  height: 250px;
+  object-fit: cover;
 }
 
 .container {
