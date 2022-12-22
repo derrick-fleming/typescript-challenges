@@ -46,33 +46,32 @@ const TypingTest = (props: {quote: string}) => {
     }
 
     function handleOpposite() {
-      setIndex(0);
-      setScore(0);
       if (props.quote === 'thrones') {
         window.location.hash = '#swanson'
       } else {
         window.location.hash = '#thrones'
       }
+      setIndex(0);
+      setScore(0);
       setIsLoading(true);
-
     }
 
-     const phraseMapped = phrase.split('').map((letter, i) => {
-      let textClass = '';
-      if (index === i) {
-        textClass = 'border-blink';
-      }
-      if ((index === i && text === letter) || (index > i)) {
-        textClass = 'text-correct';
-      }
-      if (index === i && text !== letter && text !== null) {
-        textClass = 'text-wrong';
-      }
-      if (letter === ' ') {
-        textClass = `${textClass} white-space`;
-      }
-      return <span className={textClass} key={i}>{letter}</span>;
-    })
+  const phraseMapped = phrase.split('').map((letter, i) => {
+    let textClass = '';
+    if (index === i) {
+      textClass = 'border-blink';
+    }
+    if ((index === i && text === letter) || (index > i)) {
+      textClass = 'text-correct';
+    }
+    if (index === i && text !== letter && text !== null) {
+      textClass = 'text-wrong';
+    }
+    if (letter === ' ') {
+      textClass = `${textClass} white-space`;
+    }
+    return <span className={textClass} key={i}>{letter}</span>;
+   })
 
   const oppositeText = props.quote === 'thrones'
     ? 'Ron Swanson Quote'
