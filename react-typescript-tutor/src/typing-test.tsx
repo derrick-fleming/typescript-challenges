@@ -6,7 +6,7 @@ const TypingTest = (props: {quote: string}) => {
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const[isLoading, setIsLoading] = useState(true);
-  const [phrase, setPhrase] = useState('     ');
+  const [phrase, setPhrase] = useState('  ');
   const [author, setAuthor] = useState('');
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const TypingTest = (props: {quote: string}) => {
     } else if (text !== phrase[index] && text !== null) {
       setScore(score - 1)
     }
-  }, [text, index])
+  }, [text, index, props.quote])
 
     function handleClick() {
       setIsLoading(true);
@@ -45,10 +45,22 @@ const TypingTest = (props: {quote: string}) => {
       setScore(0);
     }
 
+    function handleOpposite() {
+      setIndex(0);
+      setScore(0);
+      if (props.quote === 'thrones') {
+        window.location.hash = '#swanson'
+      } else {
+        window.location.hash = '#thrones'
+      }
+      setIsLoading(true);
+
+    }
+
      const phraseMapped = phrase.split('').map((letter, i) => {
       let textClass = '';
       if (index === i) {
-        textClass = 'border';
+        textClass = 'border-blink';
       }
       if ((index === i && text === letter) || (index > i)) {
         textClass = 'text-correct';
@@ -62,6 +74,9 @@ const TypingTest = (props: {quote: string}) => {
       return <span className={textClass} key={i}>{letter}</span>;
     })
 
+  const oppositeText = props.quote === 'thrones'
+    ? 'Ron Swanson Quote'
+    : 'Game of Thrones Quote';
 
   const scoreClass = index === phrase.length ? 'score' : 'hidden'
 
@@ -78,18 +93,24 @@ const TypingTest = (props: {quote: string}) => {
       <h1 className="text">
         {phraseMapped}
       </h1>
-      <h2> -- {author}</h2>
+      <h2 className="text-end my-3"> -- {author}</h2>
       <div className={scoreClass}>
+        <hr></hr>
         <h2>
           Your accuracy is: {finalScore}%
         </h2>
-        <button onClick={handleClick}>
+        <button className="btn btn-success me-4" onClick={handleClick}>
           Play Again?
         </button>
+        <button className="btn btn-secondary" onClick={handleOpposite}>
+          Try: {oppositeText}
+        </button>
       </div>
-      <a href="">
-        Return Home
-      </a>
+      <div className="text-end">
+        <a className="btn btn-primary" href="">
+          Return Home
+        </a>
+      </div>
     </div>
   )
 }
