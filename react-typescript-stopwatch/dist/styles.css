@@ -2,3 +2,62 @@
   margin: 2rem;
   text-align: center;
 }
+
+.container {
+  text-align: center;
+  margin: 1rem;
+}
+
+.watch-face {
+  width: 150px;
+  border-radius: 50%;
+  border: 5px solid black;
+  text-align: center;
+  display: inline-block;
+}
+
+.change-color {
+  width: 150px;
+  border-radius: 50%;
+  border: 5px solid;
+  text-align: center;
+  display: inline-block;
+  animation: color 3s ease-in-out infinite;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-family: monospace;
+  line-height: 2;
+}
+
+button {
+  background-color: white;
+  border: 0;
+}
+
+i {
+  font-size: 2rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+@keyframes color {
+  0% {
+    border-color: #000;
+  }
+
+  40% {
+    border-color: #e0163b;
+  }
+
+  75% {
+    border-color: #2c93cf;
+  }
+
+  100% {
+    border-color: #000;
+  }
+}
