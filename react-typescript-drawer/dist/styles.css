@@ -1,59 +1,73 @@
-#root {
-  margin: 2rem;
-  text-align: center;
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
-button {
-  color: white;
-  background-color: #000;
-  font-size: 1.6rem;
-  line-height: 2;
-  padding: 0 1rem;
-  transition: all 1s ease-in;
-  box-shadow: 2px 2px 2px #000;
-  animation: bounce 5s ease-in-out infinite;
+h2 {
+  padding: 2rem 3rem 2rem 2rem;
 }
 
-.three-clicks {
-  background-color: #351c74;
+h3 {
+  font-weight: 300;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  margin: 0;
+  transition: background-color 0.5s ease-in-out;
 }
 
-.six-clicks {
-  background-color: #674ea7;
+img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
 }
 
-.nine-clicks {
-  background-color: #e06666;
+h3:hover {
+  background-color: #f597a0;
+  cursor: pointer;
 }
 
-.twelve-clicks {
-  background-color: #f6b26a;
-  color: black;
+.hidden {
+  display: none;
 }
 
-.fifteen-clicks {
-  background-color: #ff0;
-  color: black;
+.fa-bars {
+  font-size: 2rem;
+  margin: 1rem;
 }
 
-.eighteen-clicks {
+.fa-bars:hover {
+  cursor: pointer;
+}
+
+.modal-container {
+  position: absolute;
+  z-index: 2;
+  height: 100vh;
   background-color: white;
-  color: black;
+  box-shadow: 3px 3px 3px rgb(99 99 99);
+  transform: translateX(0);
+  transition: transform 0.4s ease-in-out;
 }
 
-@keyframes bounce {
-  0% {
-    transform: translateY(500px);
-    padding: 5rem;
-  }
+.sliding {
+  transform: translate(-105%);
+  transition: transform 0.4s ease-in-out;
+}
 
-  50% {
-    transform: translateY(250px);
-    padding: 1rem;
-  }
+.overlay {
+  position: absolute;
+  background-color: rgb(50 50 50 / 63%);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: background-color 0.5s ease-in-out;
+  z-index: 1;
+}
 
-  100% {
-    transform: translateY(500px);
-    padding: 5rem;
-  }
+.exit-overlay {
+  background-color: rgb(255 255 255 / 0%);
+  z-index: -1;
+  transition: background-color 0.5s ease-in-out;
 }
