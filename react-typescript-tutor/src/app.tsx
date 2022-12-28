@@ -1,28 +1,27 @@
 import React, {useState, useEffect} from "react";
 import TypingTest from "./typing-test";
-import parseRoute from "../lib/parse-route";
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Column from 'react-bootstrap/Col';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const App = () => {
-  const [route, setRoute] = useState(parseRoute(window.location.hash))
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/react-typescript-tutor/dist/index.html' element={<Menu />} />
+        <Route path='/thrones' element={<TypingTest quote='thrones'/>} />
+        <Route path='/swanson' element={<TypingTest quote='swanson' />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-  useEffect(()=> {
-     window.addEventListener('hashchange', ()=> {
-      setRoute(parseRoute(window.location.hash))
-    })
-  })
+export default App;
 
-  if (route.path === 'thrones') {
-    return <TypingTest quote='thrones'/>
-  }
 
-  if (route.path === 'swanson') {
-    return <TypingTest quote='swanson'/>
-  }
-
-  return(
+function Menu() {
+  return (
     <div className="container">
       <h1 className="text-center">
         Typing Tutor
@@ -39,7 +38,7 @@ const App = () => {
               <Card.Text>
                 Use quotes from George R.R. Martin's Game of Thrones to practice your typing skills.
               </Card.Text>
-              <a className="btn btn-primary" href="#thrones">Game of Thrones Quotes </a>
+              <Link className="btn btn-primary" to="/thrones">Game of Thrones Quotes </Link>
             </Card.Body>
           </Card>
         </Column>
@@ -51,7 +50,7 @@ const App = () => {
               <Card.Text>
                 Use quotes from Parks and Recreation's Ron Swanson to practice your typing skills.
               </Card.Text>
-              <a className="btn btn-danger" href="#swanson">Ron Swanson Quotes </a>
+              <Link className="btn btn-danger" to="/swanson">Ron Swanson Quotes </Link>
             </Card.Body>
           </Card>
         </Column>
@@ -59,5 +58,3 @@ const App = () => {
     </div>
   )
 }
-
-export default App;

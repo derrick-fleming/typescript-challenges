@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useKeyPress from "./keypress-hook";
+import { Link } from 'react-router-dom';
 
 const TypingTest = (props: {quote: string}) => {
   const [text, setText]: [string | null, React.Dispatch<React.SetStateAction<string>>] = useState(null);
@@ -45,17 +46,6 @@ const TypingTest = (props: {quote: string}) => {
       setScore(0);
     }
 
-    function handleOpposite() {
-      if (props.quote === 'thrones') {
-        window.location.hash = '#swanson'
-      } else {
-        window.location.hash = '#thrones'
-      }
-      setIndex(0);
-      setScore(0);
-      setIsLoading(true);
-    }
-
   const phraseMapped = phrase.split('').map((letter, i) => {
     let textClass = '';
     if (index === i) {
@@ -72,10 +62,6 @@ const TypingTest = (props: {quote: string}) => {
     }
     return <span className={textClass} key={i}>{letter}</span>;
    })
-
-  const oppositeText = props.quote === 'thrones'
-    ? 'Ron Swanson Quote'
-    : 'Game of Thrones Quote';
 
   const scoreClass = index === phrase.length ? 'score' : 'hidden'
 
@@ -101,14 +87,11 @@ const TypingTest = (props: {quote: string}) => {
         <button className="btn btn-success me-4" onClick={handleClick}>
           Play Again?
         </button>
-        <button className="btn btn-secondary" onClick={handleOpposite}>
-          Try: {oppositeText}
-        </button>
       </div>
       <div className="text-end">
-        <a className="btn btn-primary" href="">
+        <Link className="btn btn-primary" to="/react-typescript-tutor/dist/index.html">
           Return Home
-        </a>
+        </Link>
       </div>
     </div>
   )
