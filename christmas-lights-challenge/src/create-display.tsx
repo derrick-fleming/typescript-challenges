@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 
 const colors = ['yellow', 'red', 'green', 'orange', 'off'];
 const seven = [0, 1, 2, 3, 4, 5, 6]
@@ -33,9 +34,9 @@ export default function CreateDisplay() {
         <button onClick={handleStart} className="button">
           {text}
         </button>
-        <a href='' className='button'>
+        <Link to='/christmas-lights-challenge/dist/index.html' className='button'>
           Return Home
-        </a>
+        </Link>
       </div>
     </div>
   )
@@ -55,7 +56,7 @@ function Lights(props: {key: number, random: number, timerOn: boolean}) {
   }
   let animation = props.timerOn ? {animation: `${color}-color ${randomNumber}s ease-in-out infinite`} : {}
   if (color === 'red' && props.timerOn) {
-    animation = { animation: `${color}-color-1 ${props.random}s ease-in-out infinite` }
+    animation = { animation: `${color}-color-1 ${randomNumber}s ease-in-out infinite` }
   }
 
 

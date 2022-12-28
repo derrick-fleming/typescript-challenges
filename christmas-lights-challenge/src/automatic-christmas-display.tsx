@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function AutomaticChristmasDisplay() {
   return (
@@ -55,9 +56,9 @@ export default function AutomaticChristmasDisplay() {
       </div>
     </div>
     <div className='container align-right margin-right'>
-      <a href='' className='button'>
+        <Link to='/christmas-lights-challenge/dist/index.html' className='button'>
         Return Home
-      </a>
+      </Link>
     </div>
   </div>)
 }
