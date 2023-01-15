@@ -17,7 +17,6 @@ const checkInventory = (order: (string | number)[][]) => {
   })
 };
 
-
 console.log({inventory});
 
 const order = [['sunglasses', 1], ['bags', 2]];
@@ -135,3 +134,43 @@ checkInventoryTwo(orderTwo)
   .catch((errorMessage) => {
     console.log(errorMessage);
   });
+
+// Promise.all()
+
+const checkAvailability = (itemName: string, distributorName: string) => {
+  console.log(`Checking availability of ${itemName} at ${distributorName}...`);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (restockSuccess()) {
+        console.log(`${itemName} are in stock at ${distributorName}`)
+        resolve(itemName);
+      } else {
+        reject(`Error: ${itemName} is unavailable from ${distributorName} at this time.`);
+      }
+    }, 1000);
+  });
+};
+
+function restockSuccess() {
+  return (Math.random() > .2);
+}
+
+const onFulfill = (itemsArray: any) => {
+  console.log(`Items checked: ${itemsArray}`);
+  console.log(`Every item was available from the distributor. Placing order now.`);
+};
+
+const onReject = (rejectionReason: string) => {
+  console.log(rejectionReason);
+};
+
+// Write your code below:
+const checkSunglasses: Promise<unknown> = checkAvailability('sunglasses', 'Favorite Supply Co.');
+
+const checkPants: Promise<unknown>  = checkAvailability('pants', 'Favorite Supply Co.');
+
+const checkBags: Promise<unknown> = checkAvailability('bags', 'Favorite Supply Co.');
+
+Promise.all([checkSunglasses, checkPants, checkBags])
+  .then(onFulfill)
+  .catch(onReject);
