@@ -139,7 +139,7 @@ checkInventoryTwo(orderTwo)
 
 const checkAvailability = (itemName: string, distributorName: string) => {
   console.log(`Checking availability of ${itemName} at ${distributorName}...`);
-  return new Promise((resolve, reject) => {
+  return new Promise<string>((resolve, reject) => {
     setTimeout(() => {
       if (restockSuccess()) {
         console.log(`${itemName} are in stock at ${distributorName}`)
@@ -155,7 +155,7 @@ function restockSuccess() {
   return (Math.random() > .2);
 }
 
-const onFulfill = (itemsArray: any) => {
+const onFulfill = (itemsArray: string[]) => {
   console.log(`Items checked: ${itemsArray}`);
   console.log(`Every item was available from the distributor. Placing order now.`);
 };
@@ -164,13 +164,57 @@ const onReject = (rejectionReason: string) => {
   console.log(rejectionReason);
 };
 
-// Write your code below:
-const checkSunglasses: Promise<unknown> = checkAvailability('sunglasses', 'Favorite Supply Co.');
+const checkSunglasses: Promise<string> = checkAvailability('sunglasses', 'Favorite Supply Co.');
 
-const checkPants: Promise<unknown>  = checkAvailability('pants', 'Favorite Supply Co.');
+const checkPants: Promise<string>  = checkAvailability('pants', 'Favorite Supply Co.');
 
-const checkBags: Promise<unknown> = checkAvailability('bags', 'Favorite Supply Co.');
+const checkBags: Promise<string> = checkAvailability('bags', 'Favorite Supply Co.');
 
 Promise.all([checkSunglasses, checkPants, checkBags])
   .then(onFulfill)
   .catch(onReject);
+
+/* Async Await */
+
+const shopForBeans = () => {
+  return new Promise<string>((resolve, reject) => {
+	const beanTypes = ['kidney', 'fava', 'pinto', 'black', 'garbanzo'];
+  setTimeout(()=>{
+    let randomIndex = Math.floor(Math.random() * 5);
+    let beanType = beanTypes[randomIndex];
+    console.log(`I bought ${beanType} beans because they were on sale.`);
+   resolve(beanType);
+  }, 1000)
+})
+}
+
+let soakTheBeans = (beanType: string) => {
+   return new Promise<boolean>((resolve, reject) => {
+     console.log('Time to soak the beans.');
+    setTimeout(()=>{
+      console.log(`... The ${beanType} beans are softened.`);
+      resolve(true);
+      }, 1000);
+  });
+}
+
+let cookTheBeans = (isSoftened: boolean) => {
+  return new Promise<string>((resolve, reject) => {
+    console.log('Time to cook the beans.');
+    setTimeout(()=>{
+      if (isSoftened) {
+        console.log('... The beans are cooked!');
+        resolve('\n\nDinner is served!');
+      }
+    }, 1000);
+  });
+}
+
+async function makeBeans() {
+  const type = await shopForBeans();
+  const isSoft = await soakTheBeans(type);
+  const dinner = await cookTheBeans(isSoft);
+  console.log(dinner);
+}
+
+makeBeans();
