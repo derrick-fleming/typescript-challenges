@@ -218,3 +218,81 @@ async function makeBeans() {
 }
 
 makeBeans();
+
+// This function returns true 50% of the time.
+let randomSuccess = () => {
+  let num = Math.random();
+  if (num < .5) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// This function returns a promise that resolves half of the time and rejects half of the time
+let cookBeanSouffle = () => {
+  return new Promise((resolve, reject) => {
+    console.log('Fingers crossed... Putting the Bean Souffle in the oven');
+    setTimeout(() => {
+      let success = randomSuccess();
+      if (success) {
+        resolve('Bean Souffle');
+      } else {
+        reject('Dinner is ruined!');
+      }
+    }, 1000);
+  });
+};
+
+async function hostDinnerParty() {
+  try {
+    const resolvedValue = await cookBeanSouffle();
+    console.log(`${resolvedValue} is served!`)
+  } catch (error) {
+    console.log(error);
+    console.log('Ordering a pizza!');
+  }
+}
+
+hostDinnerParty();
+
+/* Async with Promise.All */
+
+let cookBeans = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('beans');
+    }, 1000);
+  });
+};
+
+let steamBroccoli = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('broccoli');
+    }, 1000);
+  });
+};
+
+let cookRice = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('rice');
+    }, 1000);
+  });
+};
+
+let bakeChicken = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('chicken');
+    }, 1000);
+  });
+};
+
+async function serveDinnerAgain() {
+  const foodArray = await Promise.all([steamBroccoli(), cookRice(), bakeChicken(), cookBeans()]);
+  console.log(`Dinner is served. We're having ${foodArray[0]}, ${foodArray[1]}, ${foodArray[2]}, and ${foodArray[3]}.`);
+}
+
+serveDinnerAgain();
