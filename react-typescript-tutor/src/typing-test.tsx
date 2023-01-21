@@ -16,9 +16,10 @@ const TypingTest = (props: {quote: string}) => {
         ? 'https://api.gameofthronesquotes.xyz/v1/random'
         : 'https://ron-swanson-quotes.herokuapp.com/v2/quotes'
 
-      fetch(link)
-        .then(response => response.json())
-        .then(result => {
+        const fetchQuote = async () => {
+          const response: Response = await fetch(link);
+          const result: any = await response.json()
+          console.log({result})
           if (props.quote === 'thrones') {
             setPhrase(result.sentence)
             setAuthor(result.character.name);
@@ -26,8 +27,8 @@ const TypingTest = (props: {quote: string}) => {
             setPhrase(result[0])
             setAuthor('Ron Swanson')
           }
-        })
-        .catch(err => console.error(err));
+        }
+      fetchQuote().catch(err => console.error(err));
       setIsLoading(false)
     }
 
@@ -89,7 +90,7 @@ const TypingTest = (props: {quote: string}) => {
         </button>
       </div>
       <div className="text-end">
-        <Link className="btn btn-primary" to="/react-typescript-tutor/dist/index.html">
+        <Link className="btn btn-primary" to="/">
           Return Home
         </Link>
       </div>

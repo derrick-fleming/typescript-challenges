@@ -3,17 +3,17 @@ import TypingTest from "./typing-test";
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Column from 'react-bootstrap/Col';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { HashRouter, Routes, Route, Link } from "react-router-dom";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
-        <Route path='/react-typescript-tutor/dist/index.html' element={<Menu />} />
+        <Route path='/' element={<Menu />} />
         <Route path='/thrones' element={<TypingTest quote='thrones'/>} />
         <Route path='/swanson' element={<TypingTest quote='swanson' />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
