@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Action, createStore, Reducer } from '@reduxjs/toolkit'
+import { Action, createStore, PayloadAction, Reducer } from '@reduxjs/toolkit'
 
 
 // REDUX CODE
 ///////////////////////////////////
-
+/*
 const increment = () => {
   return { type: 'increment' }
 }
@@ -42,18 +42,13 @@ const renderApp = () =>
 renderApp();
 
 
-// Render once with the initial state.
-// Subscribe render to changes to the store's state.
-
 function CounterApp(props: {state: number}) {
   const state = props.state;
   const onIncrementButtonClicked = () => {
-    // Dispatch an 'increment' action.
     store.dispatch(increment())
   }
 
   const onDecrementButtonClicked = () => {
-    // Dispatch an 'decrement' action.
     store.dispatch(decrement());
   }
 
@@ -67,3 +62,118 @@ function CounterApp(props: {state: number}) {
 }
 
 store.subscribe(renderApp);
+*/
+/// Recipes
+type Recipe = {
+    id: number
+    name: string;
+    img: string
+}
+
+const allRecipesData = [
+  { id: 0, name: 'Biscuits', img: 'img/biscuits.jpg' },
+  { id: 1, name: 'Bulgogi', img: 'img/bulgogi.jpg' },
+  { id: 2, name: 'Calamari', img: 'img/calamari.jpg' },
+  { id: 3, name: 'Ceviche', img: 'img/ceviche.jpg' },
+];
+
+const initialState: { allRecipes: Recipe[], favoriteRecipes: Recipe[], searchTerm: string } = {
+  allRecipes: [],
+  favoriteRecipes: [],
+  searchTerm: ''
+};
+
+const setSearchTerm = (term: string) => {
+  return {
+    type: 'searchTerm/setSearchTerm',
+    payload: term
+  };
+}
+
+const clearSearchTerm = () => {
+  return {
+    type: 'searchTerm/clearSearchTerm'
+  };
+};
+
+const loadData = () => {
+  return {
+    type: 'allRecipes/loadData',
+    payload: allRecipesData
+  };
+};
+
+const addRecipe = (recipe: Recipe) => {
+  return {
+    type: 'favoriteRecipes/addRecipe',
+    payload: recipe
+  };
+};
+
+const removeRecipe = (recipe: Recipe) => {
+  return {
+    type: 'favoriteRecipes/removeRecipe',
+    payload: recipe
+  };
+};
+
+/* Complete this reducer */
+const recipesReducer = (state = initialState, action: PayloadAction<Recipe>) => {
+  switch (action.type) {
+    case 'allRecipes/loadData':
+      return {
+        ...state,
+        allRecipes: action.payload
+      }
+    case 'searchTerm/clearSearchTerm':
+      return {
+        ...state,
+        searchTerm: ''
+      }
+
+    case 'searchTerm/setSearchTerm':
+      return {
+        ...state,
+        searchTerm: action.payload
+      } // fix me!
+
+    case 'favoriteRecipes/addRecipe':
+      return {
+        ...state,
+        favoriteRecipes: [...state.favoriteRecipes, action.payload]
+      }
+
+    case 'favoriteRecipes/removeRecipe':
+      return {
+        ...state,
+        favoriteRecipes: state.favoriteRecipes.filter((recipe: Recipe) => recipe.id !== action.payload.id)
+      }
+
+    default:
+      return state;
+  }
+};
+
+const store = createStore(recipesReducer);
+
+/* DO NOT DELETE */
+printTests();
+function printTests() {
+  // @ts-ignore
+  store.dispatch(loadData());
+  console.log('Initial State after loading data');
+  console.log(store.getState());
+  console.log();
+  store.dispatch(addRecipe(allRecipesData[0]));
+  store.dispatch(addRecipe(allRecipesData[1]));
+    // @ts-ignore
+  store.dispatch(setSearchTerm('cheese'));
+  console.log("After favoriting Biscuits and Bulgogi and setting the search term to 'cheese'")
+  console.log(store.getState());
+  console.log();
+  store.dispatch(removeRecipe(allRecipesData[1]));
+    // @ts-ignore
+  store.dispatch(clearSearchTerm());
+  console.log("After un-favoriting Bulgogi and clearing the search term:")
+  console.log(store.getState());
+}
