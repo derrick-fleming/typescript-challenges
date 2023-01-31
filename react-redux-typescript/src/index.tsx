@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Action, createStore, PayloadAction, Reducer } from '@reduxjs/toolkit'
+import { Action, createStore, PayloadAction, Reducer, combineReducers } from '@reduxjs/toolkit'
 
 
 // REDUX CODE
@@ -77,103 +77,88 @@ const allRecipesData = [
   { id: 3, name: 'Ceviche', img: 'img/ceviche.jpg' },
 ];
 
-const initialState: { allRecipes: Recipe[], favoriteRecipes: Recipe[], searchTerm: string } = {
-  allRecipes: [],
-  favoriteRecipes: [],
-  searchTerm: ''
-};
 
-const setSearchTerm = (term: string) => {
-  return {
-    type: 'searchTerm/setSearchTerm',
-    payload: term
-  };
-}
-
-const clearSearchTerm = () => {
-  return {
-    type: 'searchTerm/clearSearchTerm'
-  };
-};
-
-const loadData = () => {
-  return {
-    type: 'allRecipes/loadData',
-    payload: allRecipesData
-  };
-};
+// Action Creators
+////////////////////////////////////////
 
 const addRecipe = (recipe: Recipe) => {
   return {
     type: 'favoriteRecipes/addRecipe',
     payload: recipe
   };
-};
+}
 
 const removeRecipe = (recipe: Recipe) => {
   return {
     type: 'favoriteRecipes/removeRecipe',
     payload: recipe
   };
-};
+}
 
-/* Complete this reducer */
-const recipesReducer = (state = initialState, action: PayloadAction<Recipe>) => {
+const setSearchTerm = (term: string) => {
+  return {
+    type: 'searchTerm/setSearchTerm',
+    payload: term
+  }
+}
+
+const clearSearchTerm = () => {
+  return {
+    type: 'searchTerm/clearSearchTerm'
+  };
+}
+
+const loadData = () => {
+  return {
+    type: 'allRecipes/loadData',
+    payload: allRecipesData
+  };
+}
+
+// Reducers
+////////////////////////////////////////
+
+const initialAllRecipes: Recipe[] = [];
+const allRecipesReducer = (allRecipes = initialAllRecipes, action: PayloadAction<Recipe>) => {
   switch (action.type) {
     case 'allRecipes/loadData':
-      return {
-        ...state,
-        allRecipes: action.payload
-      }
-    case 'searchTerm/clearSearchTerm':
-      return {
-        ...state,
-        searchTerm: ''
-      }
-
-    case 'searchTerm/setSearchTerm':
-      return {
-        ...state,
-        searchTerm: action.payload
-      } // fix me!
-
-    case 'favoriteRecipes/addRecipe':
-      return {
-        ...state,
-        favoriteRecipes: [...state.favoriteRecipes, action.payload]
-      }
-
-    case 'favoriteRecipes/removeRecipe':
-      return {
-        ...state,
-        favoriteRecipes: state.favoriteRecipes.filter((recipe: Recipe) => recipe.id !== action.payload.id)
-      }
-
+      return action.payload
     default:
-      return state;
+      return allRecipes;
   }
-};
-
-const store = createStore(recipesReducer);
-
-/* DO NOT DELETE */
-printTests();
-function printTests() {
-  // @ts-ignore
-  store.dispatch(loadData());
-  console.log('Initial State after loading data');
-  console.log(store.getState());
-  console.log();
-  store.dispatch(addRecipe(allRecipesData[0]));
-  store.dispatch(addRecipe(allRecipesData[1]));
-    // @ts-ignore
-  store.dispatch(setSearchTerm('cheese'));
-  console.log("After favoriting Biscuits and Bulgogi and setting the search term to 'cheese'")
-  console.log(store.getState());
-  console.log();
-  store.dispatch(removeRecipe(allRecipesData[1]));
-    // @ts-ignore
-  store.dispatch(clearSearchTerm());
-  console.log("After un-favoriting Bulgogi and clearing the search term:")
-  console.log(store.getState());
 }
+
+const initialSearchTerm = '';
+const searchTermReducer = (searchTerm = initialSearchTerm, action: PayloadAction<Recipe>) => {
+  switch (action.type) {
+    case 'searchTerm/setSearchTerm':
+      return action.payload
+    case 'searchTerm/clearSearchTerm':
+      return ''
+    default:
+      return searchTerm;
+  }
+}
+
+const initialFavoriteRecipes: Recipe[] = [];
+const favoriteRecipesReducer = (favoriteRecipes = initialFavoriteRecipes, action: PayloadAction<Recipe>) => {
+  switch (action.type) {
+    case 'favoriteRecipes/addRecipe':
+      return [...favoriteRecipes, action.payload]
+    case 'favoriteRecipes/removeRecipe':
+      return favoriteRecipes.filter(recipe => {
+        return recipe.id !== action.payload.id
+      });
+    default:
+      return favoriteRecipes;
+  }
+}
+
+// Create your `rootReducer` here using combineReducers().
+const reducers = {
+  allRecipes: allRecipesReducer,
+  favoriteRecipes: favoriteRecipesReducer,
+  searchTerm: searchTermReducer
+}
+const rootReducer = combineReducers(reducers);
+const store = createStore(rootReducer)
