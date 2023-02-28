@@ -5,3 +5,9 @@ let users = [
 ];
 
 users.sort((a, b) => a.name > b.name ? 1 : -1);
+
+export default function byField(key: string) {
+  return function (a: any, b: any) {
+    return a[key] > b[key] ? 1 : -1
+  }
+}
