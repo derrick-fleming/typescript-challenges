@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { expect } from 'chai';
 import sumClosure from '../closure-sum';
 
 describe('sumClosure function', () => {
