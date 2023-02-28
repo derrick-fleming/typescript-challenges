@@ -58,4 +58,17 @@ describe('byField function with users.sort(byField....)', () => {
     expect(output[1].name).to.equal('Andy');
     expect(output[2].name).to.equal('Anne');
   })
+  it('returns the correct sort of the array object for surname', () => {
+    let users = [
+      { name: "Anne", age: 20, surname: "Johnson" },
+      { name: "Ash", age: 18, surname: "Ketchum" },
+      { name: "Andy", age: 19, surname: "Hathaway" }
+    ];
+    const output = users.sort(byField('surname'));
+    expect(typeof output).to.be.equal('object')
+    expect(output.length).to.equal(3);
+    expect(output[0].name).to.equal('Andy');
+    expect(output[1].name).to.equal('Anne');
+    expect(output[2].name).to.equal('Ash');
+  })
 })
