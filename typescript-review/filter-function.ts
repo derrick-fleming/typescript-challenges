@@ -5,3 +5,9 @@ export function inBetween(a: number, b: number) {
     return x >= a && x <= b
   }
 }
+
+export function inArray(arr: number[]) {
+  return function(x: number) {
+    return arr.includes(x);
+  }
+}
