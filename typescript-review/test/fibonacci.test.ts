@@ -7,14 +7,17 @@ describe('fibonacci function', () => {
   })
   it('returns the fibnoacci sequence of 3', () => {
     const output = fibonacci(3);
+    expect(output).to.be.a('number');
     expect(output).to.equal(2);
   })
   it('returns the fibnoacci sequence of 7', () => {
     const output = fibonacci(7);
+    expect(output).to.be.a('number');
     expect(output).to.equal(13);
   })
   it('returns the fibnoacci sequence of 77', () => {
     const output = fibonacci(77);
+    expect(output).to.be.a('number');
     expect(output).to.equal(5527939700884757);
   })
 })

@@ -10,7 +10,7 @@ describe('function with users.sort((function...))', () => {
       { name: "Ann", age: 19, surname: "Hathaway" }
     ];
     const output = users.sort((a, b) => a.name > b.name ? 1 : -1);
-    expect(typeof output).to.be.equal('object')
+    expect(Array.isArray(output)).to.be.equal(true)
     expect(output.length).to.equal(3);
     expect(output[0].name).to.equal('Ann');
     expect(output[1].name).to.equal('John');
@@ -23,7 +23,7 @@ describe('function with users.sort((function...))', () => {
       { name: "Andy", age: 19, surname: "Hathaway" }
     ];
     const output = users.sort((a, b) => a.name > b.name ? 1 : -1);
-    expect(typeof output).to.be.equal('object')
+    expect(Array.isArray(output)).to.be.equal(true)
     expect(output.length).to.equal(3);
     expect(output[0].name).to.equal('Andy');
     expect(output[1].name).to.equal('Anne');
@@ -39,7 +39,7 @@ describe('byField function with users.sort(byField....)', () => {
       { name: "Ann", age: 19, surname: "Hathaway" }
     ];
     const output = users.sort(byField('name'));
-    expect(typeof output).to.be.equal('object')
+    expect(Array.isArray(output)).to.be.equal(true)
     expect(output.length).to.equal(3);
     expect(output[0].name).to.equal('Ann');
     expect(output[1].name).to.equal('John');
@@ -52,7 +52,7 @@ describe('byField function with users.sort(byField....)', () => {
       { name: "Andy", age: 19, surname: "Hathaway" }
     ];
     const output = users.sort(byField('age'));
-    expect(typeof output).to.be.equal('object')
+    expect(Array.isArray(output)).to.be.equal(true)
     expect(output.length).to.equal(3);
     expect(output[0].name).to.equal('Ash');
     expect(output[1].name).to.equal('Andy');
@@ -65,7 +65,7 @@ describe('byField function with users.sort(byField....)', () => {
       { name: "Andy", age: 19, surname: "Hathaway" }
     ];
     const output = users.sort(byField('surname'));
-    expect(typeof output).to.be.equal('object')
+    expect(Array.isArray(output)).to.be.equal(true)
     expect(output.length).to.equal(3);
     expect(output[0].name).to.equal('Andy');
     expect(output[1].name).to.equal('Anne');
