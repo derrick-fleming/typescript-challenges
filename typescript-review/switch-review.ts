@@ -33,3 +33,16 @@ function ifBrowserStatement(navigator: Window["navigator"]) {
     return statement = 'WE hope that this page looks ok!'
   }
 }
+
+export function switchNumbers (a: number) {
+  switch(a) {
+    case 2:
+      return 'Two!';
+    case 3:
+      return 'Three!';
+    case 4:
+      return 'FOUR';
+    default:
+      return 'Above 4 and below two'
+  }
+}
