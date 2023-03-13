@@ -12,6 +12,26 @@ h1 {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
+td,
+th {
+  padding: 0.5rem;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+}
+
+table {
+  border-spacing: 0;
+  margin: 1rem;
+}
+
+tbody tr:nth-child(odd) {
+  background: rgb(219 219 219);
+}
+
 .progress-container {
   margin: 1rem;
 }
@@ -47,4 +67,8 @@ h1 {
 .run-btn:hover {
   cursor: pointer;
   background-color: #014101;
+}
+
+.hidden {
+  display: none;
 }

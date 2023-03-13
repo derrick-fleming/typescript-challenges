@@ -1,24 +1,27 @@
 import React, {useState, useEffect} from "react";
+import PokemonTable from "./table";
+
+const pokemon = [
+  { number: '#0001', name: 'Bulbasaur', type: 'Grass / Poison' },
+  { number: '#0004', name: 'Charmander', type: 'Fire' },
+  { number: '#0007', name: 'Squirtle', type: 'Water' }]
+
 
 export default function App () {
   const [ percent, setPercent ] = useState(0);
+  const [ load, setLoad ] = useState(true);
   let timerId: any = null;
   let i = 0;
   let width = 0;
 
-  useEffect(() => {
-    if (percent > 100) {
-      clearInterval(timerId)
-    }
-  }, [timerId]);
+  const display = load ? 'hidden' : '';
 
   const handleClick = () => {
-    if (i === 0) {
-      i = 1;
+    if (percent < 1) {
       timerId = setInterval(() => {
-        if (width > 99) {
-          width = 100
+        if (width === 100) {
           clearInterval(timerId);
+          setLoad(false)
         } else {
           width++;
           setPercent(width);
@@ -38,6 +41,9 @@ export default function App () {
         </div>
         <p className="bar-text">{percent}%</p>
         <button className="run-btn" onClick={handleClick}>Download</button>
+      </div>
+      <div className={display}>
+        <PokemonTable pokemon={pokemon} />
       </div>
     </div>
   )
