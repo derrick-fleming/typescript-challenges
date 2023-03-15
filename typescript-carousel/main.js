@@ -75,31 +75,25 @@ function handleButtonRowClick(e) {
 
 function handleNextImage() {
   clearTimeout(timer);
+  $imageArray[index].classList.add('hidden');
+  $buttonArray[index].className = 'fa-regular fa-circle';
+
   index = ((index + 1) % $imageArray.length);
-  $imageArray.forEach(function (image) {
-    image.className = index.toString() === image.dataset.id
-      ? ''
-      : 'hidden';
-  });
-  $buttonArray.forEach(function (button) {
-    button.className = index.toString() === button.dataset.id
-      ? 'fa-solid fa-circle'
-      : 'fa-regular fa-circle';
-  });
+
+  $imageArray[index].classList.remove('hidden');
+  $buttonArray[index].className = 'fa-solid fa-circle';
+
   timer = setTimeout(handleNextImage, 3000);
 }
+
 function handlePreviousImage() {
   clearTimeout(timer);
+  $imageArray[index].classList.add('hidden');
+  $buttonArray[index].className = 'fa-regular fa-circle';
+
   index = (((index - 1) + $imageArray.length) % $imageArray.length);
-  $imageArray.forEach(function (image) {
-    image.className = index.toString() === image.dataset.id
-      ? ''
-      : 'hidden';
-  });
-  $buttonArray.forEach(function (button) {
-    button.className = index.toString() === button.dataset.id
-      ? 'fa-solid fa-circle'
-      : 'fa-regular fa-circle';
-  });
+  $buttonArray[index].className = 'fa-solid fa-circle';
+  $imageArray[index].classList.remove('hidden');
+
   timer = setTimeout(handleNextImage, 3000);
 }
