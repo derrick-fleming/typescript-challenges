@@ -14,3 +14,11 @@
 .justify-space-between {
   justify-content: space-between;
 }
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.col-6 {
+  flex-basis: 50%;
+}
