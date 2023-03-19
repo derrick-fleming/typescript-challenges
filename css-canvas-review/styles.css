@@ -1,0 +1,77 @@
+header {
+  padding: 1rem;
+  border-bottom: 0.1rem solid #c1c1c1;
+}
+
+header img {
+  width: 150px;
+}
+
+nav a {
+  padding: 0 2rem;
+  font-size: 1rem;
+  color: #a0a0a0;
+  font-family: Avenir, sans-serif;
+}
+
+.hero-image {
+  position: relative;
+  margin: 4rem auto;
+  background-image: url("images/hero.jpg");
+  background-size: cover;
+  height: 575px;
+  object-fit: scale-down;
+}
+
+.filter {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #7272725b;
+  position: absolute;
+}
+
+.hero-text {
+  width: 650px;
+  padding: 4rem;
+  position: absolute;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  font-family: "Tiempos Headline", serif;
+}
+
+.hero-text p {
+  color: #fff;
+  line-height: 2;
+  font-size: 1rem;
+  font-family: Avenir, sans-serif;
+}
+
+.hero-text a {
+  font-size: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #0a4265;
+  color: #fff;
+}
+
+nav a:hover {
+  cursor: pointer;
+  color: #0a4265;
+}
+
+nav a:last-child {
+  background-color: #0a4265;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+}
+
+nav a:last-child:hover {
+  background-color: #07293e;
+}
