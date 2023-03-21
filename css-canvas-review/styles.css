@@ -1,0 +1,118 @@
+header {
+  padding: 1rem;
+  border-bottom: 0.1rem solid #c1c1c1;
+}
+
+header img {
+  width: 150px;
+}
+
+nav a {
+  padding: 0 2rem;
+  font-size: 1rem;
+  color: #a0a0a0;
+  font-family: Avenir, sans-serif;
+}
+
+.hero-image {
+  position: relative;
+  margin: 4rem auto;
+  background-image: url("images/hero.jpg");
+  background-size: cover;
+  height: 575px;
+  object-fit: scale-down;
+}
+
+.filter {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #7272725b;
+  position: absolute;
+}
+
+.hero-text {
+  width: 675px;
+  padding: 4rem;
+  position: absolute;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  font-family: "Tiempos Headline", serif;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  color: #fff;
+  line-height: 2;
+  font-size: 1rem;
+  font-family: Avenir, sans-serif;
+  margin-bottom: 3rem;
+}
+
+.hero-text a {
+  font-size: 1.2rem;
+  font-family: Avenir, sans-serif;
+  margin-top: 2rem;
+  padding: 1rem 3rem;
+  background-color: #0a4265;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.clinics-list {
+  padding: 2rem 4rem;
+  background-color: #f3f3f3;
+  padding-bottom: 4rem;
+}
+
+.clinics-title {
+  text-align: center;
+}
+
+.clinics-title h2 {
+  font-family: "Tiempos Headline", serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.clinics-title p {
+  font-family: Avenir, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 4rem;
+}
+
+ul {
+  list-style: none;
+  font-size: 1.2rem;
+  font-family: Avenir, sans-serif;
+  line-height: 2.5;
+}
+
+li {
+  text-align: center;
+  padding-right: 4rem;
+}
+
+nav a:hover {
+  cursor: pointer;
+  color: #0a4265;
+}
+
+nav a:last-child {
+  background-color: #0a4265;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+}
+
+.hero-text a:hover,
+nav a:last-child:hover {
+  background-color: #07293e;
+  cursor: pointer;
+}
