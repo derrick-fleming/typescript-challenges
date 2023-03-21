@@ -114,4 +114,5 @@ nav a:last-child {
 .hero-text a:hover,
 nav a:last-child:hover {
   background-color: #07293e;
+  cursor: pointer;
 }
